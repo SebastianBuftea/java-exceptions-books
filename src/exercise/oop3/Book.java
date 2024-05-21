@@ -57,4 +57,9 @@ public class Book {
     public int getNumPage(){
         return numPage;
     }
+
+    @Override
+    public String toString() {
+        return "Libro: Titolo "+titolo+" Autore "+author+" editore "+editor+" numero di pagine "+numPage;
+    }
 }

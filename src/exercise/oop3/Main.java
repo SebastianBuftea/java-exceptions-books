@@ -1,5 +1,9 @@
 package exercise.oop3;
-import java.sql.SQLOutput;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class Main {
@@ -39,6 +43,41 @@ public class Main {
                 i--;
             }
 
+        }
+        File file = new File("./src/Resources/File.txt");
+        System.out.println(file.exists());
+
+        /*scrittura del file*/
+        FileWriter fileWriter=null;
+
+        try {
+            fileWriter = new FileWriter(file);
+            fileWriter.write(Arrays.toString(books));
+
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }finally {
+            if(fileWriter!= null){
+                try{
+                    fileWriter.close();
+                }catch (IOException e){
+                    throw new RuntimeException(e);
+                }
+            }
+        }
+
+        /*lettura del file*/
+        try{
+            scanner=new Scanner(file);
+            while(scanner.hasNextLine()){
+                String line= scanner.nextLine();
+                System.out.println(line);
+            }
+        }catch(FileNotFoundException e){
+        }finally {
+            if(scanner != null){
+                scanner.close();
+            }
         }
 
     }
